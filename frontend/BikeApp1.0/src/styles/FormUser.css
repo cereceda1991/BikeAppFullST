@@ -1,0 +1,120 @@
+.card__container-users {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+}
+
+.form__users {
+    display: grid;
+    gap: .5rem;
+    padding: 1rem 2rem 2rem 2rem;
+    width: 300px;
+    background-color: #fff;
+    border-radius: .2rem;
+}
+
+.info__user input {
+    background: #F9FAFC;
+    height: 2rem;
+    padding: 1rem;
+    border-radius: .2rem;
+    font-family: inherit;
+    border: solid 1px #C3C1C1;
+}
+
+.name__user {
+    text-transform: capitalize;
+}
+
+.role {
+    text-transform: capitalize;
+}
+
+.select__options {
+    font-family: inherit;
+    padding: .5rem;
+    background: #F9FAFC;
+    border-radius: .2rem;
+}
+
+.birthday {
+    display: flex;
+    text-transform: uppercase;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttton__addUser {
+    margin-top: 1.5rem;
+    border-radius: .1rem;
+    cursor: pointer;
+    border: none;
+    padding: .5rem;
+    background-color: #555A88;
+    color: white;
+}
+
+.buttton__addUser:hover {
+    background-color: #583bb6;
+}
+
+.info__user {
+    display: grid;
+    gap: .5rem;
+}
+
+.close__form {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.close__form button {
+    cursor: pointer;
+    font-size: 1.5rem;
+    border: none;
+    width: max-content;
+    background-color: transparent;
+    transition: transform 100ms ease;
+}
+
+.close__form button:hover {
+    transform: scale(1.2);
+}
+
+.form__tittle {
+    padding-bottom: 1rem;
+}
+
+.content__password {
+    position: relative;
+}
+
+.content__password input {
+    width: 100%;
+    max-height: 1rem;
+}
+
+.show__pasword {
+    position: absolute;
+    top: 15%;
+    right: 1%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    font-family: inherit;
+    transition: transform 1s ease;
+    background-color: transparent;
+    border: none;
+}
+
+.show__pasword:hover {
+    transform: scale(1.2);
+}

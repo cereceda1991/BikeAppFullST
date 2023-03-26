@@ -1,0 +1,81 @@
+.card__delete-user {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+    padding: 1rem;
+}
+
+.card__info-Delete {
+    display: grid;
+    text-align: center;
+    gap: 1rem;
+    padding: 1rem 2rem 3rem 2rem;
+    background-color: white;
+    border-radius: .2rem;
+}
+
+.button__DeleteUser {
+    margin-top: 1rem;
+    font-family: inherit;
+    background-color: #555A88;
+    border: none;
+    height: 2rem;
+    color: white
+}
+
+.button__DeleteUser:hover {
+    cursor: pointer;
+    background-color: #583bb6;
+}
+
+.close__del-msg {
+    text-align: end;
+    cursor: pointer;
+    font-weight: bolder;
+    font-size: 1.5rem;
+}
+
+.close__del-msg button {
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 1.9rem;
+    color: black;
+    border: none
+}
+
+
+.user__removed {
+    text-transform: capitalize;
+}
+
+.check__del-msg {
+    color: red;
+    font-size: 5rem;
+    text-align: center;
+    text-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    animation: zoom 1s ease-in-out infinite;
+}
+
+@keyframes zoom {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}

@@ -1,0 +1,79 @@
+.container__Add {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    backdrop-filter: blur(3px);
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 1rem;
+}
+
+.card__add-msg {
+    display: grid;
+    gap: 1rem;
+    border-radius: .2rem;
+    padding: 0.1rem 1rem 1.5rem 1rem;
+    background-color: white;
+}
+
+.close__add-msg {
+    cursor: pointer;
+    font-size: 1.9rem;
+    text-align: end;
+}
+
+
+.buttom__agree {
+    margin-top: 1rem;
+    background-color: #555A88;
+    border: none;
+    height: 2rem;
+    font-family: inherit;
+    color: white;
+    cursor: pointer;
+}
+
+.buttom__agree:hover {
+    background-color: #583bb6;
+}
+
+.card__add-msg h4 {
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.info__userCreate {
+    display: grid;
+    text-align: center;
+    gap: .5rem;
+}
+
+
+.check__add-msg {
+    animation: zoom 1s ease-in-out infinite;
+    color: #82CD47;
+    font-size: 4.5rem;
+    text-align: center;
+    text-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+@keyframes zoom {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
