@@ -1,0 +1,10 @@
+Crear proyecto:
+
+npm init
+
+Instalar las dependencias:
+
+Express
+Morgan
+
+
