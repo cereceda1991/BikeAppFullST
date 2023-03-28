@@ -9,6 +9,13 @@
 
 Este es un proyecto CRUD (Create, Read, Update, Delete) de usuarios construido con Node.js, Express, y Sequelize para el backend, y React, Vite, y Axios para el frontend.
 
+## Capturas de pantalla
+
+Aquí hay algunas capturas de pantalla del proyecto:
+
+![Formulario de registro](./frontend/src/assets/Captura1.PNG)
+![Nodal de Actulizacion exitosa](./frontend/src/assets/Captura2.PNG)
+![Listado de Usuarios](./frontend/src/assets/Captura3.PNG)
 # Instalación
 Para clonar y ejecutar este proyecto, necesitarás Git y Node.js (que incluye npm) instalados en tu computadora. Desde tu terminal, sigue estos pasos:
 
@@ -37,10 +44,10 @@ Desde la carpeta frontend, puedes iniciar la aplicación del frontend usando el 
 <p>La aplicación del frontend estará corriendo en el puerto 5173.</p>
 
 ## Funcionalidades
-Crear un nuevo usuario
-Leer la lista de usuarios
-Actualizar la información de un usuario
-Eliminar un usuario existente
+<p>Crear un nuevo usuario</p>
+<p>Leer la lista de usuariosz</p>
+<p>Actualizar la información de un usuarioz</p>
+<p>Eliminar un usuario existentez</p>
 
 Contribución
 Las contribuciones son bienvenidas. Si tienes sugerencias o correcciones de errores, por favor envía un mensaje a traves de mis redes sociales de mi perfil.
