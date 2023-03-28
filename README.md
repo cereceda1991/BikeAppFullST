@@ -1,4 +1,4 @@
-# CRUD de Usuarios
+# CRUD DE USUARIOS
 
 [![Node.js](https://img.shields.io/badge/Node.js-green.svg?logo=node.js)](https://nodejs.org/)
 [![Express.js](https://img.shields.io/badge/Express.js-blue.svg?logo=express)](https://expressjs.com/)
@@ -36,7 +36,7 @@ Para clonar y ejecutar este proyecto, necesitarás Git y Node.js (que incluye np
 ## Inicia el servidor del backend
 Desde la raíz del proyecto, puedes ejecutar el servidor del backend usando el comando:
 
-<p>$ npm run start:dev</p>
+<p>npm run start:dev</p>
 <p>El servidor del backend estará corriendo en el puerto 3000.</p>
 
 ## Inicia la aplicación del frontend
@@ -47,9 +47,9 @@ Desde la carpeta frontend, puedes iniciar la aplicación del frontend usando el 
 
 ## Funcionalidades
 <p>Crear un nuevo usuario</p>
-<p>Leer la lista de usuariosz</p>
-<p>Actualizar la información de un usuarioz</p>
-<p>Eliminar un usuario existentez</p>
+<p>Leer la lista de usuarios</p>
+<p>Actualizar la información de un usuario</p>
+<p>Eliminar un usuario existente</p>
 
 Contribución
 Las contribuciones son bienvenidas. Si tienes sugerencias o correcciones de errores, por favor envía un mensaje a traves de mis redes sociales de mi perfil.
