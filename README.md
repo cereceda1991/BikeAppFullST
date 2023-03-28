@@ -51,5 +51,5 @@ Desde la carpeta frontend, puedes iniciar la aplicación del frontend usando el 
 <p>Actualizar la información de un usuario</p>
 <p>Eliminar un usuario existente</p>
 
-Contribución
+## Contribución
 Las contribuciones son bienvenidas. Si tienes sugerencias o correcciones de errores, por favor envía un mensaje a traves de mis redes sociales de mi perfil.
