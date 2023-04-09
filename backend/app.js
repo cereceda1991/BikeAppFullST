@@ -1,20 +1,34 @@
 const express = require('express');
-const cors = require('cors'); // Importamos el paquete CORS
+const morgan = require('morgan');
+const cors = require('cors');
+
+const AppError = require('./utils/app.Error');
+const globalErrorHandler = require('./controllers/error.controller');
 
 const routerUser = require('./routes/userRoutes.route');
 const routerRepair = require('./routes/repairRoutes.route');
 
-const app = express(); // Creamos una nueva instancia de Express
+const app = express();
 
-app.use(express.json()); // Añadimos el middleware para procesar datos en formato JSON
+app.use(express.json());
+app.use(cors());
 
-// Configuramos el middleware CORS para permitir solicitudes desde http://localhost:5173
-app.use(
-  cors({ origin: 'http://localhost:5173' })
-);
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+}
 
-// Añadimos las rutas de usuarios y reparaciones
 app.use('/api/v1/repairs', routerRepair);
 app.use('/api/v1/users', routerUser);
 
-module.exports = app; // Exportamos la aplicación para ser usada en el archivo server.js
+app.all('*', (req, res, next) => {
+  return next(
+    new AppError(
+      `Cannot find ${req.originalUrl} on this server!`,
+      404
+    )
+  );
+});
+
+app.use(globalErrorHandler);
+
+module.exports = app;

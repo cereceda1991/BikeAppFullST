@@ -24,6 +24,14 @@ const Repair = db.define('repairs', {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
+  motorsNumber: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  description: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
 });
 
 module.exports = Repair;
