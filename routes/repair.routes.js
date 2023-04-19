@@ -1,14 +1,17 @@
 const express = require('express');
-
-const repairController = require('../controllers/repair.controller');
-const validExistRepair = require('../middlewares/repair.middleware');
-const validFieldRepair = require('../middlewares/validationRepair.middleware');
-const authMiddleware = require('../middlewares/auth.middleware');
-
 const routerRepair = express.Router();
 
-routerRepair.use(authMiddleware.protect);
+//Importación de Controladores
+const repairController = require('../controllers/repair.controller');
+
+//Importación de Middlewares
+const validationRepairMidleware = require('../middlewares/validationRepair.middleware');
+const authMiddleware = require('../middlewares/auth.middleware');
+const repairMiddleware = require('../middlewares/repair.middleware');
+
+// Aplicar el middleware de autenticación a todas las rutas
 routerRepair.use(
+  authMiddleware.protect,
   authMiddleware.restrictTo('employee')
 );
 
@@ -16,23 +19,15 @@ routerRepair
   .route('/')
   .get(repairController.allRepair)
   .post(
-    validFieldRepair.createRepairValidation,
+    validationRepairMidleware.createRepairValidation,
     repairController.createRepair
   );
 
 routerRepair
   .route('/:id')
-  .get(
-    validExistRepair.validExistRepair,
-    repairController.repairById
-  )
-  .patch(
-    validExistRepair.validExistRepair,
-    repairController.repairUpDate
-  )
-  .delete(
-    validExistRepair.validExistRepair,
-    repairController.deleteRepair
-  );
+  .all(repairMiddleware.validExistRepair)
+  .get(repairController.repairById)
+  .patch(repairController.repairUpDate)
+  .delete(repairController.deleteRepair);
 
 module.exports = routerRepair;

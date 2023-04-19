@@ -1,21 +1,23 @@
 const express = require('express');
 
 const userController = require('../controllers/users.controller');
-const validExistUser = require('../middlewares/user.middleware');
-const validFieldUser = require('../middlewares/validationUser.middleware');
+
+//Importacion de Middlewares
+const userMiddleware = require('../middlewares/user.middleware');
+const validationUserMiddleware = require('../middlewares/validationUser.middleware');
 const authMiddleware = require('../middlewares/auth.middleware');
 
 const routerUser = express.Router();
 
 routerUser.post(
   '/',
-  validFieldUser.createUserValidation,
+  validationUserMiddleware.createUserValidation,
   userController.createUser
 );
 
 routerUser.post(
   '/login',
-  validFieldUser.loginUser,
+  validationUserMiddleware.loginUser,
   userController.loginUser
 );
 
@@ -25,18 +27,14 @@ routerUser.route('/').get(userController.findAll);
 
 routerUser
   .route('/:id')
-  .get(
-    validExistUser.validExistUser,
-    userController.userById
-  )
+  .all(userMiddleware.validExistUser)
+  .get(userController.userById)
   .patch(
-    validExistUser.validExistUser,
     authMiddleware.protectAccountOwner,
-    validFieldUser.updateUser,
+    validationUserMiddleware.updateUser,
     userController.upDateUser
   )
   .delete(
-    validExistUser.validExistUser,
     authMiddleware.protectAccountOwner,
     userController.deleteUser
   );
