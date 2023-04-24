@@ -12,6 +12,12 @@ const handleEmailError = () =>
     400
   );
 
+const handleValidUser = () =>
+  new AppError(
+    'The user does not exist in the database!',
+    400
+  );
+
 const sendErrorDev = (err, res) => {
   res.status(err.statusCode).json({
     status: err.status,
@@ -28,7 +34,7 @@ const sendErrorProd = (err, res) => {
       message: err.message,
     });
   } else {
-    console.error('ERROR 🧨', err);
+    console.error('ERROR ', err);
     res.status(500).json({
       status: 'fail',
       message: 'Something went very wrong!',
@@ -58,16 +64,12 @@ const globalErrorHandler = (
     if (error.parent?.code === '23505') {
       error = handleEmailError();
     }
+    if (error.parent?.code === '23503') {
+      error = handleValidUser();
+    }
 
     sendErrorProd(error, res);
   }
-
-  res.status(err.statusCode).json({
-    status: err.status,
-    message: err.message,
-    stack: err.stack,
-    error: err,
-  });
 };
 
 module.exports = globalErrorHandler;

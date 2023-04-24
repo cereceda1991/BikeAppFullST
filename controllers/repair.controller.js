@@ -1,4 +1,5 @@
-const Repair = require('../models/reapir.model');
+const User = require('../models/user.model');
+const Repair = require('../models/repair.model');
 const catchAsync = require('../utils/catchAsync');
 
 exports.allRepair = catchAsync(
@@ -7,24 +8,56 @@ exports.allRepair = catchAsync(
       where: {
         status: 'pending',
       },
-      order: [['id', 'DESC']],
+
+      include: [
+        {
+          model: User,
+          attributes: {
+            exclude: [
+              'password',
+              'role',
+              'status',
+            ],
+          },
+        },
+      ],
     });
 
     res.status(200).json({
       message: 'The query has been done successs',
       results: repairs.length,
       repairs,
+      User,
     });
   }
 );
 
 exports.repairById = catchAsync(
-  async (req, res, next) => {
+  async (req, res) => {
     const { repair } = req;
 
+    const repairInfo = await Repair.findOne({
+      where: {
+        id: repair.id,
+      },
+      include: [
+        {
+          model: User,
+          attributes: {
+            exclude: [
+              'password',
+              'role',
+              'status',
+            ],
+          },
+        },
+      ],
+    });
+
     res.status(200).json({
-      message: `Repair with id ${repair.id} found`,
-      repair,
+      status: 'success',
+      message: 'The query has been done success',
+      repairInfo,
     });
   }
 );
@@ -47,9 +80,9 @@ exports.createRepair = catchAsync(
   async (req, res) => {
     const {
       date,
-      userId,
       description,
       motorsNumber,
+      userId,
     } = req.body;
 
     const repair = await Repair.create({
@@ -76,7 +109,7 @@ exports.deleteRepair = catchAsync(
     });
 
     res.json({
-      message: 'The repair has been cancelled',
+      message: 'The repair has been deleted',
     });
   }
 );

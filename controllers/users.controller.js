@@ -1,8 +1,8 @@
-const User = require('../models/users.model');
-const catchAsync = require('../utils/catchAsync');
 const bcrypt = require('bcryptjs');
 const generateJWT = require('../utils/jwt');
 const AppError = require('../utils/appError');
+const catchAsync = require('../utils/catchAsync');
+const User = require('../models/user.model');
 
 exports.loginUser = catchAsync(
   async (req, res, next) => {
@@ -18,7 +18,7 @@ exports.loginUser = catchAsync(
     if (!user) {
       return next(
         new AppError(
-          'The user could not be found',
+          'The user could not be found ',
           404
         )
       );
@@ -32,7 +32,7 @@ exports.loginUser = catchAsync(
     ) {
       return next(
         new AppError(
-          'Incorrect email or password',
+          'Incorrect email or password ',
           401
         )
       );
@@ -40,7 +40,7 @@ exports.loginUser = catchAsync(
 
     const token = await generateJWT(user.id);
 
-    res.status(200).json({
+    return res.status(200).json({
       status: 'success',
       token,
       user: {
@@ -53,42 +53,38 @@ exports.loginUser = catchAsync(
   }
 );
 
-exports.findAll = catchAsync(
-  async (req, res, next) => {
-    const users = await User.findAll({
-      where: {
-        status: 'available',
-      },
-      attributes: { exclude: ['password'] },
-    });
+exports.findAll = catchAsync(async (req, res) => {
+  const users = await User.findAll({
+    where: {
+      status: 'available',
+    },
+    attributes: {
+      exclude: ['password'],
+    },
+    order: [['id', 'DESC']],
+  });
 
-    res.status(200).json({
-      message: 'The query has been done successs',
-      results: users.length,
-      users,
-    });
-  }
-);
+  res.status(200).json({
+    message: 'Query completed successfully',
+    results: users.length,
+    users,
+  });
+});
 
 exports.userById = catchAsync(
-  async (req, res, next) => {
-    const { user } = req;
+  async (req, res) => {
+    const { id, name, email, role } = req.user;
 
     res.status(200).json({
       status: 'success',
-      message: 'The query has been done success',
-      user: {
-        id: user.id,
-        name: user.name,
-        email: user.email,
-        role: user.role,
-      },
+      message: 'Query has been done successfully',
+      user: { id, name, email, role },
     });
   }
 );
 
 exports.createUser = catchAsync(
-  async (req, res, next) => {
+  async (req, res) => {
     const { name, email, password, role } =
       req.body;
 
@@ -109,7 +105,7 @@ exports.createUser = catchAsync(
 
     res.status(201).json({
       status: 'succes',
-      message: 'The user has been created!',
+      message: 'The user has been created! ',
       token,
       user: {
         id: user.id,
@@ -122,7 +118,7 @@ exports.createUser = catchAsync(
 );
 
 exports.upDateUser = catchAsync(
-  async (req, res, next) => {
+  async (req, res) => {
     const { name, email } = req.body;
     const { user } = req;
 
@@ -133,13 +129,13 @@ exports.upDateUser = catchAsync(
 
     res.status(200).json({
       status: 'success',
-      message: 'The user update',
+      message: 'User has been update',
     });
   }
 );
 
 exports.deleteUser = catchAsync(
-  async (req, res, next) => {
+  async (req, res) => {
     const { user } = req;
 
     await user.update({
@@ -147,7 +143,7 @@ exports.deleteUser = catchAsync(
     });
 
     res.status(200).json({
-      message: 'The user has been deleted',
+      message: 'User has been disabled',
     });
   }
 );

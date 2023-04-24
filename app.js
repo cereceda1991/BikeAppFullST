@@ -4,7 +4,6 @@ const morgan = require('morgan');
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/error.controller');
 
-//Importación de las rutas
 const routerUser = require('./routes/users.routes');
 const routerRepair = require('./routes/repair.routes');
 
@@ -22,7 +21,7 @@ app.use('/api/v1/repairs', routerRepair);
 app.all('*', (req, res, next) => {
   return next(
     new AppError(
-      `cannot find ${req.originalUrl} on this server!`,
+      `Cannot find ${req.originalUrl} on this server!`,
       404
     )
   );

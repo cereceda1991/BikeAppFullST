@@ -1,0 +1,2 @@
+
+npm i bcryptjs dotenv express express-rate-limit express-validator helmet hpp jsonwebtoken pg pg-hstore sequelize xss-clean morgan nodemon
